@@ -1,0 +1,17 @@
+.title {
+	text-align: center;
+}
+
+.main {
+	text-align: center;
+}
+
+.list {
+	display: block;
+	max-width: 10%;
+	margin: 10px auto;
+}
+
+.ques {
+	text-align: center;
+}
