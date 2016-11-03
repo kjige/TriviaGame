@@ -8,10 +8,14 @@
 
 .list {
 	display: block;
-	max-width: 10%;
 	margin: 10px auto;
+	max-width: 50%;
 }
 
 .ques {
+	text-align: center;
+}
+
+.timer {
 	text-align: center;
 }
