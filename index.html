@@ -2,20 +2,23 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Trivia Game</title>
+	<title>Science Trivia Game</title>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://bootswatch.com/spacelab/bootstrap.min.css">
 	<link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 	<div class="container">
-		<div class="row col-md-12 col-xs-12 title">
-			<h1>Trivia Game!</h1>
+		<div class="jumbotron col-md-12 col-xs-12 title">
+			<h1>Science Trivia!</h1>
 		</div>
-		<div class="row col-md-12 col-xs-12">
-			<h5 class="timer">Time remaining:</h5>
+		<div class="thumbnail row col-md-12 col-xs-12">
+			<h4>Time Remaining</h4>
+			<h2 class="timer"></h2>
 		</div>
-		<div class="main col-md-12 col-xs-12"></div>
+		<div class="row thumbnail main col-md-12 col-xs-12"></div>
+		<div class="row resetButton col-md-12 col-xs-12"></div>
 	</div>
 	<script src='assets/javascript/app.js'></script>
 </body>

@@ -28,14 +28,32 @@ var ques = [
 		'a': ['Thomas Edison', 'Sir Frank Whittle', 'Sir Humphrey Davey', 'Alexander Bell'],
 		'c': 2
 	},
-	
+
 	ques6 = {
 		'c': 'Game over'
 	}
 ]
 
+var yesGifs = [
+ 	lions = {'src': "assets/images/lions.gif"},
+ 	pugs = {'src': "assets/images/pugs.gif"},
+ 	leopard = {'src': "assets/images/leopard.gif"},
+ 	lizard = {'src': "assets/images/lizard.gif"},
+ 	style = {'src': "assets/images/style.gif"}
+]
+ 	
+var noGifs = [
+ 	duck = {'src': "assets/images/duck.gif"},
+ 	parrot = {'src': "assets/images/parrot.gif"},
+ 	shock = {'src': "assets/images/shock.gif"},
+ 	slap = {'src': "assets/images/slap.gif"},
+ 	splash = {'src': "assets/images/splash.gif"}
+]
+
+var endGif = "assets/images/massage.gif";
+
 var quesNum = 0;
-var number = 6;
+var number = 8;
 var correct = ques[quesNum].c;
 var scoreNum = 0;
 var ansData;
@@ -44,8 +62,9 @@ startButton();
 // create start button
 function startButton() {
 	var but = $('<button>').attr('class', 'btn btn-danger start').html('START');
-	$('.title').append(but);
 	$('.main').empty();
+	$('.main').append(but);
+	$('.resetButton').empty();
 	clickStart();
 }
 
@@ -59,21 +78,23 @@ function clickStart() {
 
 // set interval
 function runTimer() {
-	if (quesNum === 6) {
+	if (quesNum === 5) {
+		$('.resetButton').empty();
 		stop();
 		score();
+	} else {
+		number = 4;
+		correct = ques[quesNum].c;
+	    counter = setInterval(decrement, 1000);
+	    $('.timer').html(number);
+	    question();
 	}
-	number = 6;
-	correct = ques[quesNum].c;
-    counter = setInterval(decrement, 1000);
-    $('.timer').html('Time remaining: ' + number);
-    question();
 }
 
 // decrease timer
 function decrement() {
     number--;
-    $('.timer').html('Time remaining: ' + number);
+    $('.timer').html(number);
     if (number === 0) {
         stop();
         outOfTime();
@@ -83,6 +104,7 @@ function decrement() {
 // load question and answer choices
 function question() {
 	$('.main').empty();
+	$('.resetButton').empty();
 	var qu = $('<h3>').html(ques[quesNum].q).attr('class', 'ques');
 	$('.main').append(qu);
 	for (var i = 0; i < 4; i++) {
@@ -106,9 +128,10 @@ function outOfTime() {
 	if (quesNum < 5) {
 		var m = $('<p>').html('The correct answer is ' + ques[quesNum].a[correct]);
 		$('.main').append(m);
+		noGif();
 	}
 	stop();
-	checkReset();
+	nextQues();
 }
 
 // click event listener for player guess
@@ -126,12 +149,10 @@ function checkAns() {
 	if (ansData === correct) {
 		ansData = '';
 		correctAns();
-		// checkReset();
 		console.log('correct');
 	} else { 
 		ansData = '';
 		wrongAns();
-		// checkReset();
 		console.log('wrong');
 	}
 }
@@ -142,7 +163,8 @@ function correctAns() {
 	$('.main').html('Correct!').append(e);
 	scoreNum++;
 	stop();
-	checkReset();
+	yesGif();
+	nextQues();
 }
 
 // if player guessed wrong
@@ -150,25 +172,36 @@ function wrongAns() {
 	var e = $('<p>').html('The correct answer is ' + ques[quesNum].a[correct]);
 	$('.main').html('Nope!').append(e);
 	stop();
-	checkReset();
+	noGif();
+	nextQues();
+}
+
+// loads gif for right answer
+function yesGif() {
+	var r = Math.floor(Math.random()*5);
+	var g = yesGifs[r].src;
+	var i = $('<img>', {src: g});
+	i.appendTo($('.resetButton'));
+}
+
+// loads gif for wrong answer
+function noGif() {
+	var r = Math.floor(Math.random()*5);
+	var g = noGifs[r].src;
+	var i = $('<img>', {src: g});
+	i.appendTo($('.resetButton'));
 }
 
 // wait to display next question
 function wait() {
-	setTimeout(runTimer, 1000*3);
+	setTimeout(runTimer, 1000*5);
 }
 
-// check if all questions answered
-function checkReset() {
-	// if (quesNum === 5) {
-	// 	stop();
-	// 	score();
-	// } else {
+// sets next question to load
+function nextQues() {
 		quesNum++;
-		// correct = ques[quesNum].c;
 		stop();
 		wait();
-	// }
 }
 
 // display score to player
@@ -180,8 +213,10 @@ function score() {
 
 // make reset button
 function resetButton() {
-	var btn = $('<button class="btn btn-danger">').html('RESET').addClass('reset');
-	$('.main').append(btn);
+	var btn = $('<button class="btn btn-danger reset">').html('RESET');
+	var s = $('<img>').attr('src', endGif);
+	$('.resetButton').append(btn, s);
+	// $('.resetButton').append(s);
 	clickReset();
 }
 
@@ -189,6 +224,7 @@ function resetButton() {
 function clickReset() {
 	$(document).on('click', '.reset',function() {
 		$(document).off('click', '.reset');
+		$('.resetButton').empty();
 		resetGame();
 	})
 }
@@ -197,7 +233,7 @@ function clickReset() {
 function resetGame() {
 	quesNum = 0;
 	number = 6;
-	// correct = ques[quesNum].c;
 	scoreNum = 0;
+	stop();
 	startButton();
 }
