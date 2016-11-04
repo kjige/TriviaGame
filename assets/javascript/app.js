@@ -232,7 +232,7 @@ function clickReset() {
 // resets game
 function resetGame() {
 	quesNum = 0;
-	number = 6;
+	number = 8;
 	scoreNum = 0;
 	stop();
 	startButton();
