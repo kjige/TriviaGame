@@ -83,7 +83,7 @@ function runTimer() {
 		stop();
 		score();
 	} else {
-		number = 4;
+		number = 8;
 		correct = ques[quesNum].c;
 	    counter = setInterval(decrement, 1000);
 	    $('.timer').html(number);
