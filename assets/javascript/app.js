@@ -149,11 +149,9 @@ function checkAns() {
 	if (ansData === correct) {
 		ansData = '';
 		correctAns();
-		console.log('correct');
 	} else { 
 		ansData = '';
 		wrongAns();
-		console.log('wrong');
 	}
 }
 
@@ -216,7 +214,6 @@ function resetButton() {
 	var btn = $('<button class="btn btn-danger reset">').html('RESET');
 	var s = $('<img>').attr('src', endGif);
 	$('.resetButton').append(btn, s);
-	// $('.resetButton').append(s);
 	clickReset();
 }
 
