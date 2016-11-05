@@ -1,17 +1,8 @@
-.container {
-	
-}
-
 .title {
 	text-align: center;
 	min-height: 20%;
 	margin: 20px auto;
 }
-
-/*.main {
-	text-align: center;
-	margin: 20px auto;
-}*/
 
 .list {
 	display: block;
@@ -19,25 +10,14 @@
 	max-width: 30%;
 }
 
-/*.ques {
-	text-align: center;
-	margin: 20px auto;
-}*/
-
-/*.timer {
-	text-align: center;
-	margin: 20px auto;
-}*/
+.timer {
+	color: red;
+}
 
 .row {
 	text-align: center;
 	margin: 10px auto;
 }
-
-/*.resetButton {
-	text-align: center;
-	margin: 20px auto;
-}*/
 
 .reset {
 	display: block;
